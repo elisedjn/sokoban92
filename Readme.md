@@ -25,7 +25,7 @@ Classes and methods definition.
 # main.js
 - buildSplashScreen (){}
 - buildGameScreen (){}
-- builWinScreen (){}
+- buildWinScreen (){}
 
 # game.js
 - Game () {}
