@@ -1,4 +1,6 @@
 let main = document.querySelector("main");
+let level1 = new Level();
+let sokoboy = new Sokoboy(2, 1);
 
 const buildSplashScreen = () => {
   let splashScreen = document.createElement("div");
@@ -26,6 +28,8 @@ const buildGameScreen = () => {
   gameScreen.height = "560";
   gameScreen.id = "game-canvas";
   main.appendChild(gameScreen);
+  level1.draw();
+  sokoboy.draw();
 };
 
 const buildWinScreen = () => {
@@ -43,11 +47,6 @@ const buildWinScreen = () => {
   main.appendChild(winScreen);
 };
 
-const changeColorBtn = (btn) => {
-  btn.style.color = "#ff0000";
-  btn.style.backgroundColor = "#7f0000";
-};
-
 // Waiting for the page to load before to show the splash screen
 window.addEventListener("load", () => {
   buildSplashScreen();
@@ -55,7 +54,6 @@ window.addEventListener("load", () => {
   //Waiting for the player to press Start to build the game
   let startBtn = document.querySelector("#start-button");
   startBtn.addEventListener("click", () => {
-    changeColorBtn(startBtn);
     buildGameScreen();
     // Waiting for the player to win the game
     // !!!! I Need to create a never ending loop between play again and the game screen
@@ -64,11 +62,10 @@ window.addEventListener("load", () => {
     if (win) {
       buildWinScreen();
       // Waiting for the player to click on play again
-      let playAgainBtn = document.querySelector("#play-again-btn")
+      let playAgainBtn = document.querySelector("#play-again-btn");
       playAgainBtn.addEventListener("click", () => {
-        changeColorBtn(playAgainBtn);
         buildGameScreen();
-      })
+      });
     }
   });
 });
