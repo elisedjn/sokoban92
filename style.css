@@ -1,0 +1,88 @@
+body{
+    background-color: black;
+}
+main {
+  display: flex;
+  justify-content: center;
+  font-family: Courier, monospace;
+  font-size: 18px;
+}
+
+button {
+  background-color: #ffff00;
+  color: #007e00;
+  font-size: 45px;
+  font-weight: bold;
+  font-family: Courier, monospace;
+  border: 3px solid black;
+}
+
+h1,
+h2 {
+  color: #ff0000;
+  font-size: 60px;
+  text-shadow: -3px -3px 0 #ffff00, 3px -3px 0 #ffff00, -3px 3px 0 #ffff00,
+    3px 3px 0 #ffff00;
+}
+
+/*Splash Screen styling*/
+#splash-screen,
+#win-screen {
+  width: 560px;
+  height: 560px;
+  background-image: url("img/splash-bg.png");
+  text-align: center;
+}
+
+#splash-screen h1 {
+  margin: 60px 0px 20px 0px;
+}
+
+#splash-screen p {
+  background-color: rgb(255, 255, 255, 0.9);
+  width: 430px;
+  margin: auto;
+  font-weight: bold;
+  padding: 10px 0px;
+}
+
+#splash-screen #start-button {
+  position: relative;
+  top: -10px;
+  left: -5px;
+}
+
+#splash-screen img {
+  position: relative;
+  top: 75px;
+  left: -20px;
+}
+
+/* Win Screen Styling */
+#win-screen h1{
+    font-size: 80px;
+    margin: 60px 0px 0px 0px;
+}
+
+#win-screen h2 {
+    margin: 0px;  
+}
+
+#win-screen p {
+    color: white;
+    font-size: 34px;
+    margin: 0px 0px 40px 0px;
+    font-weight: bold;
+    text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black,
+    2px 2px 0 black;
+}
+
+#win-screen #play-again-btn {
+    font-size: 35px;
+    padding: 10px 20px;
+}
+
+/* Canvas styling */
+#game-canvas{
+    border: 10px solid white;
+}
