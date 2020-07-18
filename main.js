@@ -1,6 +1,9 @@
 let main = document.querySelector("main");
 let level1 = new Level();
 let sokoboy = new Sokoboy(2, 1);
+let box1 = new Box(3, 2);
+let box2 = new Box(2, 5)
+let box3 = new Box(5,6)
 
 const buildSplashScreen = () => {
   let splashScreen = document.createElement("div");
@@ -21,15 +24,21 @@ const buildSplashScreen = () => {
 
 const buildGameScreen = () => {
   // Removing the splash screen
+  console.log("build game called");
   main.removeChild(main.firstChild);
   //creating and adding the canvas to the body
   let gameScreen = document.createElement("canvas");
   gameScreen.width = "560";
   gameScreen.height = "560";
   gameScreen.id = "game-canvas";
+  let ctx = gameScreen.getContext('2d');
+  level1.draw(ctx);
+  sokoboy.draw(ctx);
+  box1.draw(ctx);
+  box2.draw(ctx);
+  box3.draw(ctx);
   main.appendChild(gameScreen);
-  level1.draw();
-  sokoboy.draw();
+  
 };
 
 const buildWinScreen = () => {
@@ -54,12 +63,20 @@ window.addEventListener("load", () => {
   //Waiting for the player to press Start to build the game
   let startBtn = document.querySelector("#start-button");
   startBtn.addEventListener("click", () => {
+    let intervalID = setInterval (() => {
+      requestAnimationFrame(buildGameScreen)
+    }, 100);
     buildGameScreen();
+    
+
+    
     // Waiting for the player to win the game
     // !!!! I Need to create a never ending loop between play again and the game screen
+    // Make a function that calls itself in the if / addEventListener
     // Begining of a logic
     let win = false;
     if (win) {
+      clearInterval(intervalID)
       buildWinScreen();
       // Waiting for the player to click on play again
       let playAgainBtn = document.querySelector("#play-again-btn");
