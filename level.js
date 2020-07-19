@@ -23,6 +23,7 @@ class Level {
         this.ballImg = new Image();
         this.ballImg.src = "img/ball.png";
 
+        this.boxList = [box1, box2, box3]
         // this.sokoboy = sokoboy;
         // this.boxList = []
     }
@@ -47,6 +48,28 @@ class Level {
             })
 
         })
+    }
+
+    nextObstacle(x, y, direction){
+        
+        //Adding the acutal boxes position to the grid
+        let gridWithBox = this.grid;
+        this.boxList.forEach(box => {
+            gridWithBox[box.y][box.x] = "B";
+        })
+
+        //Checking the grid
+        switch(direction){
+            case "D":
+                return  gridWithBox[y+1][x];
+            case "U":
+                return  gridWithBox[y-1][x];
+            case "R":
+                return  gridWithBox[y][x+1];
+            case "L":
+                return  gridWithBox[y][x-1];
+
+        }
     }
 }
 
