@@ -1,29 +1,48 @@
 class Game {
     constructor (){
-        this.level = level1;
-        this.sokoboy = sokoboy;
+        this.level = new Level();
+        this.canvas = null;
+        this.ctx = null;
+        this.keyDown = false;
     }
 
-    play (){
+    draw(){
+        this.canvas = document.querySelector("#game-canvas");
+        this.ctx = this.canvas.getContext("2d");
+        this.level.draw(this.ctx);
+        this.level.boxList.forEach(box => {
+            box.draw(this.ctx)
+        })
+        this.level.sokoboy.draw(this.ctx);
+    }
+
+    play(){
+        this.draw();
         document.addEventListener("keydown", event => {
+            if(this.keyDown == false) {
+            this.keyDown = true;
+            console.log(event.key);
             switch (event.key) {
                 case "ArrowRight":
-                    this.sokoboy.direction = "R";
+                    this.level.sokoboy.direction = "R";
                     break;
                 case "ArrowLeft":
-                    this.sokoboy.direction = "L";
+                    this.level.sokoboy.direction = "L";
                     break;
                 case "ArrowUp":
-                    this.sokoboy.direction = "U";
+                    this.level.sokoboy.direction = "U";
                     break;
                 case "ArrowDown":
-                    this.sokoboy.direction = "D";
+                    this.level.sokoboy.direction = "D";
                     break;
                 default:
                     break;
             }
-
-            this.sokoboy.move();
-        } )
+        this.level.sokoboy.move();
+        this.draw();
+        }} )
+        document.addEventListener("keyup", event => {
+            this.keyDown = false;
+        })
     }
 }

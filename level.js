@@ -14,6 +14,8 @@ let grid1 = [['BG','W','W','W','W','BG','BG','BG'],
 class Level {
     constructor() {
         this.grid = grid1;
+        this.boxList = [new Box(3, 2), new Box(2, 5), new Box(5,6)] ;
+        this.sokoboy = new Sokoboy(2, 1);
 
         // Images database 
         this.voidImg = new Image();
@@ -22,11 +24,8 @@ class Level {
         this.wallImg.src = "img/wall.png";
         this.ballImg = new Image();
         this.ballImg.src = "img/ball.png";
-
-        this.boxList = [box1, box2, box3]
-        // this.sokoboy = sokoboy;
-        // this.boxList = []
     }
+
     draw(ctx) {
         this.grid.forEach((line, yCoord) => {
             line.forEach((elem, xCoord) => {

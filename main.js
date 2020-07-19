@@ -1,9 +1,5 @@
 let main = document.querySelector("main");
-let box1 = new Box(3, 2);
-let box2 = new Box(2, 5);
-let box3 = new Box(5,6);
-let sokoboy = new Sokoboy(2, 1);
-let level1 = new Level();
+
 let game = new Game()
 
 const buildSplashScreen = () => {
@@ -31,14 +27,7 @@ const buildGameScreen = () => {
   gameScreen.width = "560";
   gameScreen.height = "560";
   gameScreen.id = "game-canvas";
-  let ctx = gameScreen.getContext('2d');
-  level1.draw(ctx);
-  sokoboy.draw(ctx);
-  box1.draw(ctx);
-  box2.draw(ctx);
-  box3.draw(ctx);
   main.appendChild(gameScreen);
-  
 };
 
 const buildWinScreen = () => {
@@ -63,10 +52,12 @@ window.addEventListener("load", () => {
   //Waiting for the player to press Start to build the game
   let startBtn = document.querySelector("#start-button");
   startBtn.addEventListener("click", () => {
-    // let intervalID = setInterval (() => {
-    //   requestAnimationFrame(buildGameScreen)
-    // }, 100);
     buildGameScreen();
+    let intervalID = setInterval (() => {
+      requestAnimationFrame(() => {
+        game.play()
+      })
+    }, 100);
     
 
     
