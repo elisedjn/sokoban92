@@ -1,4 +1,5 @@
 let main = document.querySelector("main");
+let game = new Game();
 
 const buildSplashScreen = () => {
   let splashScreen = document.createElement("div");
@@ -21,10 +22,10 @@ const buildGameScreen = () => {
   // Removing the splash screen
   main.removeChild(main.firstChild);
   //creating and adding the canvas to the body
-  let gameScreen = document.createElement("canvas");
-  gameScreen.width = "560";
-  gameScreen.height = "560";
-  gameScreen.id = "game-canvas";
+  let gameScreen = document.createElement("div");
+  gameScreen.id = "game-screen";
+  gameScreen.innerHTML = `<canvas id='game-canvas' width = '560' height = '560'></canvas> 
+  <button id = "retry-btn">RETRY</button>`;
   main.appendChild(gameScreen);
 };
 
@@ -38,7 +39,8 @@ const buildWinScreen = () => {
     <h1>YEAH!</h1>
       <h2>YOU MADE IT!</h2>
       <div><img src="img/sokogif.gif" alt="Soko-boy dance" /></div>
-      <p id="final-score"> Your moves : <span>20</span></p>
+      <p id="final-score"> Your moves : <span>${game.movement}</span></p>
+      <p id="can-do-better"> Wanna try to do better? </p>
       <button id="play-again-btn">Play again</button>`;
   main.appendChild(winScreen);
 };
@@ -52,8 +54,8 @@ window.addEventListener("load", () => {
   if (startBtn) {
     startBtn.addEventListener("click", () => {
       buildGameScreen();
-      let game = new Game();
       game.startGame();
     });
   }
+    
 });

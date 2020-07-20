@@ -16,6 +16,8 @@ class Game {
       box.draw(this.ctx);
     });
     this.level.sokoboy.draw(this.ctx);
+    this.ctx.font = '20px courier';
+    this.ctx.fillText(`Your moves : ${this.movement}`, 15, 515);
   }
 
   whichBox(x, y, direction) {
@@ -74,6 +76,8 @@ class Game {
         targetedBox.pushed(this.level.sokoboy.direction);
         this.level.sokoboy.move();
         this.draw();
+        //counting the movement
+        this.movement += 1;
       }
     } else {
       // If the next obstacle is not a box
@@ -145,7 +149,16 @@ class Game {
       this.keyDown = false;
     });
 
-    //Checking if all the boxes are on yellowball
+    //Checking if the  player wants to retry
+    let retryBtn = document.getElementById("retry-btn");
+    retryBtn.addEventListener("click", event => {
+        clearInterval(game.intervalID);
+        buildGameScreen();
+        game = new Game();
+        game.startGame();
+    });
+
+    //Checking if all the boxes are on a yellow ball
     this.win();
   }
 

@@ -3,6 +3,7 @@ class Sokoboy {
     this.x = x;
     this.y = y;
     this.direction = "D";
+
     this.image = new Image();
     this.image.src = "img/sb-face.png";
   }
@@ -25,15 +26,19 @@ class Sokoboy {
     switch (this.direction) {
       case "D":
         this.y += 1;
+        this.image.src = "img/sb-face.png";
         break;
       case "U":
         this.y -= 1;
+        this.image.src = "img/sb-back.png";
         break;
       case "R":
         this.x += 1;
+        this.image.src = "img/sb-right.png";
         break;
       case "L":
         this.x -= 1;
+        this.image.src = "img/sb-left.png";
         break;
     }
   }
