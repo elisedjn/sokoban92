@@ -6,6 +6,12 @@ class Game {
     this.keyDown = false;
     this.movement = 0;
     this.intervalID = 0;
+    
+    // Sounds
+    this.music = new Audio("sound/bgmusic.wav");
+    this.music.volume = 0.1;
+    this.soundselect = new Audio("sound/select.wav");
+    this.soundWin = new Audio("sound/winmusic.wav");
   }
 
   draw() {
@@ -99,19 +105,32 @@ class Game {
       }
     });
     if (win) {
+        this.music.pause()
+        this.music.currentTime = 0;
       // If the player wins the game, the interval is cleared.
       clearInterval(game.intervalID);
       // The buildscreen appears
       buildWinScreen();
+      this.soundWin.volume = 0.1;
+      this.soundWin.play();
       // Waiting for the player to click on play again
       let playAgainBtn = document.querySelector("#play-again-btn");
       playAgainBtn.addEventListener("click", () => {
         // Re starting the game
+        this.soundselect.play();
+        this.soundWin.pause();
+        this.soundWin.currentTime = 0;
         buildGameScreen();
         game = new Game();
+        game.retry(retry);
         game.startGame();
+        game.music.play();
       });
     }
+  }
+
+  retry(callback){
+    this.retryMethod = callback();
   }
 
   play() {
@@ -149,20 +168,12 @@ class Game {
       this.keyDown = false;
     });
 
-    //Checking if the  player wants to retry
-    let retryBtn = document.getElementById("retry-btn");
-    retryBtn.addEventListener("click", event => {
-        clearInterval(game.intervalID);
-        buildGameScreen();
-        game = new Game();
-        game.startGame();
-    });
-
     //Checking if all the boxes are on a yellow ball
     this.win();
   }
 
   startGame() {
+    // retry();
     this.intervalID = setInterval(() => {
       requestAnimationFrame(() => {
         this.play();

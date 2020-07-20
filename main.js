@@ -45,6 +45,20 @@ const buildWinScreen = () => {
   main.appendChild(winScreen);
 };
 
+const retry = () => {
+  //Checking if the  player wants to retry
+let retryBtn = document.getElementById("retry-btn");
+retryBtn.addEventListener("click", event => {
+    game.music.pause()
+    clearInterval(game.intervalID);
+    buildGameScreen();
+    game = new Game();
+    game.retry(retry);
+    game.startGame();
+    game.music.play();
+});
+}
+
 // Waiting for the page to load before to show the splash screen
 window.addEventListener("load", () => {
   buildSplashScreen();
@@ -54,7 +68,10 @@ window.addEventListener("load", () => {
   if (startBtn) {
     startBtn.addEventListener("click", () => {
       buildGameScreen();
+      game.soundselect.play();
+      game.retry(retry);
       game.startGame();
+      game.music.play();
     });
   }
     
