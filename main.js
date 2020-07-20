@@ -53,27 +53,13 @@ window.addEventListener("load", () => {
   let startBtn = document.querySelector("#start-button");
   startBtn.addEventListener("click", () => {
     buildGameScreen();
-    let intervalID = setInterval (() => {
-      requestAnimationFrame(() => {
-        game.play()
-      })
-    }, 100);
+    game.startGame();
+    //buildWinScreen();
     
-
-    
-    // Waiting for the player to win the game
-    // !!!! I Need to create a never ending loop between play again and the game screen
-    // Make a function that calls itself in the if / addEventListener
-    // Begining of a logic
-    let win = false;
-    if (win) {
-      clearInterval(intervalID)
-      buildWinScreen();
-      // Waiting for the player to click on play again
-      let playAgainBtn = document.querySelector("#play-again-btn");
-      playAgainBtn.addEventListener("click", () => {
-        buildGameScreen();
-      });
-    }
+      // // Waiting for the player to click on play again
+      // let playAgainBtn = document.querySelector("#play-again-btn");
+      // playAgainBtn.addEventListener("click", () => {
+      //   buildGameScreen();
+      // });
   });
 });

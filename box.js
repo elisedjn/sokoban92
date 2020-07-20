@@ -6,6 +6,7 @@ class Box {
         this.image.src = "img/yellowbox.png";
         this.redImage = new Image();
         this.redImage.src = "img/redbox.png"
+        this.onYellowBall = false;
     }
 
     draw(ctx) {
@@ -37,7 +38,13 @@ class Box {
           }
     }
 
-    changeColor(ctx){
-        ctx.drawImage(this.redImage, this.x * 70, this.y * 70, 70, 70);
+    changeColor(obstacle){
+        if(obstacle === "YB"){
+            this.image = this.redImage;
+            this.onYellowBall = true;
+        } else {
+            this.image.src = "img/yellowbox.png";
+        }
+        
     }
 }

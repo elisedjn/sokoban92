@@ -52,7 +52,7 @@ class Level {
     nextObstacle(x, y, direction){
         
         //Adding the acutal boxes position to the grid
-        let gridWithBox = this.grid;
+        let gridWithBox = JSON.parse(JSON.stringify(this.grid));
         this.boxList.forEach(box => {
             gridWithBox[box.y][box.x] = "B";
         })

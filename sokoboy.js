@@ -15,7 +15,7 @@ class Sokoboy {
     if (obstacle === "V" || obstacle === "YB"){
       return true;
     } else if (obstacle === "B"){
-      return false;//check if the box can move
+      return true;//check if the box can move
     } else {
       return false;
     }
