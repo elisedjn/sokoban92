@@ -100,7 +100,7 @@ class Game {
     });
     if (win) {
       // If the player wins the game, the interval is cleared.
-      clearInterval(this.intervalID);
+      clearInterval(game.intervalID);
       // The buildscreen appears
       buildWinScreen();
       // Waiting for the player to click on play again
@@ -108,7 +108,7 @@ class Game {
       playAgainBtn.addEventListener("click", () => {
         // Re starting the game
         buildGameScreen();
-        let game = new Game();
+        game = new Game();
         game.startGame();
       });
     }

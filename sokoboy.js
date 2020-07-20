@@ -13,14 +13,14 @@ class Sokoboy {
   }
 
   canMove(obstacle) {
-    if (obstacle === "V" || obstacle === "YB"){
+    if (obstacle === "V" || obstacle === "YB") {
       return true;
-    } else if (obstacle === "B"){
-      return true;//check if the box can move
+    } else if (obstacle === "B") {
+      return true; //check if the box can move
     } else {
       return false;
     }
-    }
+  }
 
   move() {
     switch (this.direction) {
@@ -39,6 +39,8 @@ class Sokoboy {
       case "L":
         this.x -= 1;
         this.image.src = "img/sb-left.png";
+        break;
+      default:
         break;
     }
   }

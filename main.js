@@ -19,7 +19,7 @@ const buildSplashScreen = () => {
 };
 
 const buildGameScreen = () => {
-  // Removing the splash screen
+  // Removing the splash screen or the previous game screen
   main.removeChild(main.firstChild);
   //creating and adding the canvas to the body
   let gameScreen = document.createElement("div");
