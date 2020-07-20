@@ -1,7 +1,5 @@
 let main = document.querySelector("main");
 
-let game = new Game()
-
 const buildSplashScreen = () => {
   let splashScreen = document.createElement("div");
   splashScreen.id = "splash-screen";
@@ -51,15 +49,11 @@ window.addEventListener("load", () => {
 
   //Waiting for the player to press Start to build the game
   let startBtn = document.querySelector("#start-button");
-  startBtn.addEventListener("click", () => {
-    buildGameScreen();
-    game.startGame();
-    //buildWinScreen();
-    
-      // // Waiting for the player to click on play again
-      // let playAgainBtn = document.querySelector("#play-again-btn");
-      // playAgainBtn.addEventListener("click", () => {
-      //   buildGameScreen();
-      // });
-  });
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      buildGameScreen();
+      let game = new Game();
+      game.startGame();
+    });
+  }
 });

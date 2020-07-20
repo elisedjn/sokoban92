@@ -87,6 +87,7 @@ class Game {
   }
 
   win() {
+    // Checking if every box is on a yellow ball
     let win = true;
     this.level.boxList.forEach((box) => {
       if (!box.onYellowBall) {
@@ -94,9 +95,18 @@ class Game {
       }
     });
     if (win) {
-      console.log("clean interval", this.intervalID);
+      // If the player wins the game, the interval is cleared.
       clearInterval(this.intervalID);
-      alert("You Win!");
+      // The buildscreen appears
+      buildWinScreen();
+      // Waiting for the player to click on play again
+      let playAgainBtn = document.querySelector("#play-again-btn");
+      playAgainBtn.addEventListener("click", () => {
+        // Re starting the game
+        buildGameScreen();
+        let game = new Game();
+        game.startGame();
+      });
     }
   }
 
