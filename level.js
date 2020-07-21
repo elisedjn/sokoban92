@@ -1,23 +1,16 @@
 // This is the class for the level - it takes as parameter
 // - a grid (2 dimensional array)
-
-// Grid for the 1st Level
-let grid1 = [
-  ["BG", "W", "W", "W", "W", "BG", "BG", "BG"],
-  ["BG", "W", "V", "V", "W", "W", "W", "BG"],
-  ["BG", "W", "V", "V", "V", "V", "W", "BG"],
-  ["W", "W", "W", "V", "W", "V", "W", "W"],
-  ["W", "YB", "W", "V", "W", "V", "V", "W"],
-  ["W", "YB", "V", "V", "V", "W", "V", "W"],
-  ["W", "YB", "V", "V", "V", "V", "V", "W"],
-  ["W", "W", "W", "W", "W", "W", "W", "W"],
-];
+// - an array with the initial values of the sokoboy
+// - a 2 dimensional array with all the initial values of boxes
 
 class Level {
-  constructor() {
-    this.grid = grid1;
-    this.boxList = [new Box(3, 2), new Box(2, 5), new Box(5, 6)];
-    this.sokoboy = new Sokoboy(2, 1);
+  constructor(grid, sokoboyInit, boxListInit) {
+    this.grid = grid;
+    this.boxList = []
+    boxListInit.forEach(box => {
+      this.boxList.push(new Box(box[0], box[1]))
+    })
+    this.sokoboy = new Sokoboy(sokoboyInit[0], sokoboyInit[1]);
 
     // Images database
     this.voidImg = new Image();

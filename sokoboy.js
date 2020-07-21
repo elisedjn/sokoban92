@@ -6,10 +6,25 @@ class Sokoboy {
 
     this.image = new Image();
     this.image.src = "img/sb-face.png";
+
+    this.bool = true;
+    this.intervalIDSoko = 0;
   }
 
   draw(ctx) {
-    ctx.drawImage(this.image, this.x * 70, this.y * 70, 70, 70);
+      ctx.drawImage(this.image, this.x * 70, this.y * 70, 70, 70);
+  }
+
+  animate(src1, src2){
+    clearInterval(this.intervalIDSoko);
+        this.intervalIDSoko = setInterval(()=> {
+    if (this.bool){
+      this.bool = false;
+      this.image.src = src1;
+    } else {
+      this.bool = true;
+      this.image.src = src2;
+    }}, 200)
   }
 
   canMove(obstacle) {
@@ -26,19 +41,15 @@ class Sokoboy {
     switch (this.direction) {
       case "D":
         this.y += 1;
-        this.image.src = "img/sb-face.png";
         break;
       case "U":
         this.y -= 1;
-        this.image.src = "img/sb-back.png";
         break;
       case "R":
         this.x += 1;
-        this.image.src = "img/sb-right.png";
         break;
       case "L":
         this.x -= 1;
-        this.image.src = "img/sb-left.png";
         break;
       default:
         break;

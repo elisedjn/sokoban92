@@ -1,6 +1,6 @@
 class Game {
-  constructor() {
-    this.level = new Level();
+  constructor(grid, sokoboy, boxList) {
+    this.level = new Level(grid, sokoboy, boxList);
     this.canvas = null;
     this.ctx = null;
     this.keyDown = false;
@@ -113,7 +113,7 @@ class Game {
       this.soundWin.pause();
       this.soundWin.currentTime = 0;
       buildGameScreen();
-      game = new Game();
+      game = new Game(grid1, sokoboy1, boxList1);
       game.retry(retry);
       game.startGame();
       game.music.play();
@@ -157,15 +157,19 @@ class Game {
         switch (event.key) {
           case "ArrowRight":
             this.level.sokoboy.direction = "R";
+            this.level.sokoboy.animate("img/sb-right.png","img/sb-right-dab.png");
             break;
           case "ArrowLeft":
             this.level.sokoboy.direction = "L";
+            this.level.sokoboy.animate("img/sb-left.png","img/sb-left-dab.png");
             break;
           case "ArrowUp":
             this.level.sokoboy.direction = "U";
+            this.level.sokoboy.animate("img/sb-back-right.png","img/sb-back-left.png");
             break;
           case "ArrowDown":
             this.level.sokoboy.direction = "D";
+            this.level.sokoboy.animate("img/sb-face-right.png","img/sb-face-left.png");
             break;
           default:
             break;

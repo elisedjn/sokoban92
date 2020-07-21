@@ -1,5 +1,21 @@
 let main = document.querySelector("main");
-let game = new Game();
+
+// Elements for the 1st Level
+let grid1 = [
+  ["BG", "W", "W", "W", "W", "BG", "BG", "BG"],
+  ["BG", "W", "V", "V", "W", "W", "W", "BG"],
+  ["BG", "W", "V", "V", "V", "V", "W", "BG"],
+  ["W", "W", "W", "V", "W", "V", "W", "W"],
+  ["W", "YB", "W", "V", "W", "V", "V", "W"],
+  ["W", "YB", "V", "V", "V", "W", "V", "W"],
+  ["W", "YB", "V", "V", "V", "V", "V", "W"],
+  ["W", "W", "W", "W", "W", "W", "W", "W"],
+];
+let sokoboy1 = [2, 1];
+let boxList1 = [[3, 2], [2, 5], [5, 6]];
+
+
+let game = new Game(grid1, sokoboy1, boxList1);
 
 const buildSplashScreen = () => {
   let splashScreen = document.createElement("div");
@@ -52,7 +68,7 @@ const retry = () => {
     game.music.pause();
     clearInterval(game.intervalID);
     buildGameScreen();
-    game = new Game();
+    game = new Game(grid1, sokoboy1, boxList1);
     game.retry(retry);
     game.startGame();
     game.music.play();
