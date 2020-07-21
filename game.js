@@ -9,9 +9,11 @@ class Game {
     
     // Sounds
     this.music = new Audio("sound/bgmusic.wav");
-    this.music.volume = 0.1;
+    this.music.volume = 0.2;
+    this.music.loop = true;
     this.soundselect = new Audio("sound/select.wav");
     this.soundWin = new Audio("sound/winmusic.wav");
+    this.soundBox = new Audio('sound/boxok.wav');
   }
 
   draw() {
@@ -84,6 +86,11 @@ class Game {
         this.draw();
         //counting the movement
         this.movement += 1;
+        if (targetedBox.onYellowBall){
+          this.soundBox.play();
+        }
+      } else {
+        this.draw();
       }
     } else {
       // If the next obstacle is not a box
@@ -92,9 +99,26 @@ class Game {
         this.draw();
         //counting the movement
         this.movement += 1;
+      } else {
+        this.draw();
       }
     }
   }
+
+  playAgain(){
+    let playAgainBtn = document.querySelector("#play-again-btn");
+    playAgainBtn.addEventListener("click", () => {
+        // Re starting the game
+      this.soundselect.play();
+      this.soundWin.pause();
+      this.soundWin.currentTime = 0;
+      buildGameScreen();
+      game = new Game();
+      game.retry(retry);
+      game.startGame();
+      game.music.play();
+      });
+    };
 
   win() {
     // Checking if every box is on a yellow ball
@@ -114,18 +138,7 @@ class Game {
       this.soundWin.volume = 0.1;
       this.soundWin.play();
       // Waiting for the player to click on play again
-      let playAgainBtn = document.querySelector("#play-again-btn");
-      playAgainBtn.addEventListener("click", () => {
-        // Re starting the game
-        this.soundselect.play();
-        this.soundWin.pause();
-        this.soundWin.currentTime = 0;
-        buildGameScreen();
-        game = new Game();
-        game.retry(retry);
-        game.startGame();
-        game.music.play();
-      });
+      this.playAgain()
     }
   }
 
@@ -163,6 +176,7 @@ class Game {
         this.collisionCheck();
       }
     });
+
     // Checking when the key is not pressed anymore
     document.addEventListener("keyup", (event) => {
       this.keyDown = false;
@@ -173,7 +187,6 @@ class Game {
   }
 
   startGame() {
-    // retry();
     this.intervalID = setInterval(() => {
       requestAnimationFrame(() => {
         this.play();
