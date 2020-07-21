@@ -27,7 +27,7 @@ h2 {
 
 /*Splash Screen styling*/
 #splash-screen,
-#win-screen {
+#win-screen, #super-win-screen {
   width: 560px;
   height: 560px;
   background-image: url("img/splash-bg.png");
@@ -58,42 +58,51 @@ h2 {
   left: -20px;
 }
 
-/* Win Screen Styling */
-#win-screen h1 {
+/* Win & Super Win Screen Styling */
+#win-screen h1, #super-win-screen h1 {
   font-size: 80px;
   margin: 40px 0px 0px 0px;
 }
 
-#win-screen img {
+#win-screen img, #super-win-screen img {
   position: relative;
   top: 20px;
 }
 
-#win-screen h2 {
+#win-screen h2, #super-win-screen h2 {
   margin: 0px;
 }
 
-#win-screen p {
+#win-screen p, #super-win-screen p {
   color: black;
   background-color: rgb(255, 255, 255, 0.8);
   margin: 0px 130px;
   font-weight: bold;
 }
 
-#win-screen #final-score{
+#win-screen .final-score{
   font-size: 30px;
   margin-top: 15px;
 }
+#super-win-screen .final-score {
+  font-size: 30px;
+}
 
-#win-screen #can-do-better{
+#win-screen .can-do-better, #super-win-screen .can-do-better{
   font-size: 22px;
   padding-bottom: 10px;
   margin-bottom: 8px;
 }
 
-#win-screen button {
+#win-screen button{
   font-size: 35px;
   padding: 10px 20px;
+}
+
+#super-win-screen button {
+  font-size: 30px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
 }
 
 /* GameScreen styling */

@@ -46,7 +46,7 @@ class Game {
         nextX -= 1;
         break;
     }
-    this.level.boxList.forEach((box, index) => {
+    this.level.boxList.forEach((box) => {
       if (box.x === nextX && box.y === nextY) {
         matchingBox = box;
       }
@@ -119,13 +119,24 @@ class Game {
       // If the player wins the game, the interval is cleared.
       clearInterval(game.intervalID);
       // The buildscreen appears
-      buildWinScreen();
-      this.soundWin.volume = 0.1;
-      this.soundWin.play();
-      // Waiting for the player to click on play again
-      playAgain();
-      // Or to go to the next level
-      nextLevel();
+      if (i < levelList.length){
+        buildWinScreen();
+        this.soundWin.volume = 0.1;
+        this.soundWin.play();
+        // Waiting for the player to click on play again
+        playAgain();
+        // Or to go to the next level
+        nextLevel();
+      } else {
+        buildSuperWinScreen();
+        this.soundWin.volume = 0.1;
+        this.soundWin.play();
+        // Waiting for the player to click on play again
+        playAgain();
+        // or to go back to the first level
+        nextLevel();
+      }
+      
     }
   }
 

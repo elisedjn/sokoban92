@@ -42,10 +42,11 @@ class Box {
 
   changeColor(obstacle) {
     if (obstacle === "YB") {
-      this.image = this.redImage;
+      this.image.src = "img/redbox.png";
       this.onYellowBall = true;
     } else {
       this.image.src = "img/yellowbox.png";
+      this.onYellowBall = false;
     }
   }
 }
