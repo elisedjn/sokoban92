@@ -26,7 +26,7 @@ h2 {
 }
 
 /*Splash Screen styling*/
-#splash-screen,
+#splash-screen, #levels-screen,
 #win-screen, #super-win-screen {
   width: 560px;
   height: 560px;
@@ -69,7 +69,7 @@ h2 {
   top: 20px;
 }
 
-#win-screen h2, #super-win-screen h2 {
+#win-screen h2, #super-win-screen h2{
   margin: 0px;
 }
 
@@ -123,4 +123,34 @@ h2 {
   width: 72px;
   height: 35px;
   margin: auto;
+}
+
+/* Levels screen styling */
+
+#levels-screen h2{
+  padding-top: 60px;
+  font-family: Courier, monospace;
+  margin: 0;
+}
+
+#levels-screen button{
+  font-size: 30px;
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+}
+
+#levels-screen #level1-btn, #levels-screen #level3-btn{
+  position: relative;
+  left: -30px;
+}
+
+#levels-screen #level2-btn, #levels-screen #level4-btn{
+  position: relative;
+  left: 30px;
+}
+
+#levels-screen img {
+  position: relative;
+  left: -100px;
 }

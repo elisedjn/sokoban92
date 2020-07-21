@@ -1,4 +1,6 @@
-let main = document.querySelector("main");
+// --------------------------------------------
+// ------------ LEVEL SETTINGS ----------------
+// --------------------------------------------
 
 // Elements for the 1st Level
 let grid1 = [
@@ -95,6 +97,11 @@ let currentGrid = levelList[0][0];
 let currentSokoboy = levelList[0][1];
 let currentBoxList = levelList[0][2];
 
+
+// --------------------------------------------
+// ------------- SCREEN SETTINGS --------------
+// --------------------------------------------
+let main = document.querySelector("main");
 let game = new Game(currentGrid, currentSokoboy, currentBoxList);
 
 const buildSplashScreen = () => {
@@ -113,6 +120,21 @@ const buildSplashScreen = () => {
       <button id="start-button">START</button> `;
   main.appendChild(splashScreen);
 };
+
+const buildLevelsScreen = () => {
+  // Removing the splash screen or the previous game screen
+  main.removeChild(main.firstChild);
+  // creating the level screen and adding it to the main
+  let levelsScreen = document.createElement("div");
+  levelsScreen.id = "levels-screen";
+  levelsScreen.innerHTML = `<h2>Choose your level</h2>
+  <button id="level1-btn">Level 1</button>
+  <button id="level2-btn">Level 2</button>
+  <button id="level3-btn">Level 3</button>
+  <button id="level4-btn">Level 4</button>
+  <img src="img/sokogif.gif" alt="Soko-boy dance" />`;
+  main.appendChild(levelsScreen);
+}
 
 const buildGameScreen = () => {
   // Removing the splash screen or the previous game screen
@@ -157,6 +179,10 @@ const buildSuperWinScreen = () => {
   main.appendChild(winScreen);
 };
 
+
+// --------------------------------------------
+// -------------- GAME SETTINGS ---------------
+// --------------------------------------------
 const retry = () => {
   //Checking if the  player wants to retry
   let retryBtn = document.getElementById("retry-btn");
@@ -207,6 +233,9 @@ const playAgain = () => {
   });
 };
 
+// --------------------------------------------
+// ------------ STARTING THE GAME -------------
+// --------------------------------------------
 // Waiting for the page to load before to show the splash screen
 window.addEventListener("load", () => {
   buildSplashScreen();
