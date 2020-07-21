@@ -19,6 +19,8 @@ class Level {
     this.wallImg.src = "img/wall.png";
     this.ballImg = new Image();
     this.ballImg.src = "img/ball.png";
+    this.bgImg = new Image();
+    this.bgImg.src = "img/blackbg.png"
   }
 
   draw(ctx) {
@@ -26,6 +28,7 @@ class Level {
       line.forEach((elem, xCoord) => {
         switch (elem) {
           case "BG":
+            ctx.drawImage(this.bgImg, xCoord * 70, yCoord * 70, 70, 70);
             break;
           case "W":
             ctx.drawImage(this.wallImg, xCoord * 70, yCoord * 70, 70, 70);

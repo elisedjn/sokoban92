@@ -25,7 +25,7 @@ class Game {
     });
     this.level.sokoboy.draw(this.ctx);
     this.ctx.font = '20px courier';
-    this.ctx.fillText(`Your moves : ${this.movement}`, 15, 515);
+    this.ctx.fillText(`Your moves : ${this.movement}`, 85, 515);
   }
 
   whichBox(x, y, direction) {
@@ -105,21 +105,6 @@ class Game {
     }
   }
 
-  playAgain(){
-    let playAgainBtn = document.querySelector("#play-again-btn");
-    playAgainBtn.addEventListener("click", () => {
-        // Re starting the game
-      this.soundselect.play();
-      this.soundWin.pause();
-      this.soundWin.currentTime = 0;
-      buildGameScreen();
-      game = new Game(grid1, sokoboy1, boxList1);
-      game.retry(retry);
-      game.startGame();
-      game.music.play();
-      });
-    };
-
   win() {
     // Checking if every box is on a yellow ball
     let win = true;
@@ -138,7 +123,9 @@ class Game {
       this.soundWin.volume = 0.1;
       this.soundWin.play();
       // Waiting for the player to click on play again
-      this.playAgain()
+      playAgain();
+      // Or to go to the next level
+      nextLevel();
     }
   }
 

@@ -61,7 +61,12 @@ h2 {
 /* Win Screen Styling */
 #win-screen h1 {
   font-size: 80px;
-  margin: 60px 0px 0px 0px;
+  margin: 40px 0px 0px 0px;
+}
+
+#win-screen img {
+  position: relative;
+  top: 20px;
 }
 
 #win-screen h2 {
@@ -77,6 +82,7 @@ h2 {
 
 #win-screen #final-score{
   font-size: 30px;
+  margin-top: 15px;
 }
 
 #win-screen #can-do-better{
@@ -85,7 +91,7 @@ h2 {
   margin-bottom: 8px;
 }
 
-#win-screen #play-again-btn {
+#win-screen button {
   font-size: 35px;
   padding: 10px 20px;
 }
