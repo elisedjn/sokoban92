@@ -6,7 +6,7 @@
 class Level {
   constructor(grid, sokoboyInit, boxListInit) {
     this.grid = grid;
-    this.boxList = []
+    this.boxList = [];
     boxListInit.forEach(box => {
       this.boxList.push(new Box(box[0], box[1]))
     })

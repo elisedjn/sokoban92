@@ -187,8 +187,8 @@ h2 {
 footer {
   position: absolute;
   top: 580px;
-  left: 250px;
+  left: 220px;
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
-  color:white;
+  color:gray;
 }

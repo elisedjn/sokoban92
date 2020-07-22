@@ -87,15 +87,15 @@ Definition of the different states and their transition (transition functions)
 
 
 ### Trello
-[Link url](https://trello.com/invite/b/rZy293HB/16fb20996f512054d344682b6ab4fb9c/sokoban-92)
+[Link url](https://trello.com/b/rZy293HB/sokoban-92)
 
 
 ### Git
 URls for the project repo and deploy
-[Link Repo](http://github.com)
-[Link Deploy](http://github.com)
+[Link Repo](https://github.com/elisedjn/sokoban92)
+[Link Deploy](https://elisedjn.github.io/sokoban92/)
 
 
 ### Slides
 URls for the project presentation (slides)
-[Link Slides.com](http://slides.com)
+[Link Slides.com](https://docs.google.com/presentation/d/1q8S_AX5agm_TA5f_j75sPEyEBDm3WycCCdhoLj-2yNc/edit?usp=sharing)

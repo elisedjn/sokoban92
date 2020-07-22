@@ -203,6 +203,8 @@ const retry = () => {
   retryBtn.addEventListener("click", (event) => {
     game.music.pause();
     clearInterval(game.intervalID);
+    // The box list is erased
+    game.level.boxList.splice(0, game.level.boxList.length);
     gameSetup();
   });
 };
@@ -218,6 +220,7 @@ const nextLevel = () => {
     currentGrid = levelList[i][0];
     currentSokoboy = levelList[i][1];
     currentBoxList = levelList[i][2];
+    console.log(currentBoxList);
     gameSetup();
     i++;
   });

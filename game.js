@@ -97,7 +97,6 @@ class Game {
       if (newBox.onYellowBall) newBox.image.src = "img/redbox.png";
       this.level.boxList.push(newBox);
     })
-    console.log(this.level.boxList)
 
     this.draw();
 
@@ -130,8 +129,8 @@ class Game {
       if (targetedBox.canBePushed(boxNextObstacle)) {
         // Changing the box color if needed
         targetedBox.changeColor(boxNextObstacle);
-        targetedBox.pushed(this.level.sokoboy.direction);
         this.level.sokoboy.move();
+        targetedBox.pushed(this.level.sokoboy.direction);
         this.draw();
         //counting the movement
         this.movement += 1;
@@ -165,6 +164,8 @@ class Game {
       this.music.currentTime = 0;
       // If the player wins the game, the interval is cleared.
       clearInterval(game.intervalID);
+      // The box list is erased
+      this.level.boxList.splice(0, this.level.boxList.length);
       // The buildscreen appears
       if (i < levelList.length) {
         buildWinScreen();
@@ -213,6 +214,7 @@ class Game {
               "img/sb-right.png",
               "img/sb-right-dab.png"
             );
+            this.collisionCheck();
             break;
           case "ArrowLeft":
             this.level.sokoboy.direction = "L";
@@ -220,6 +222,7 @@ class Game {
               "img/sb-left.png",
               "img/sb-left-dab.png"
             );
+            this.collisionCheck();
             break;
           case "ArrowUp":
             this.level.sokoboy.direction = "U";
@@ -227,6 +230,7 @@ class Game {
               "img/sb-back-right.png",
               "img/sb-back-left.png"
             );
+            this.collisionCheck();
             break;
           case "ArrowDown":
             this.level.sokoboy.direction = "D";
@@ -234,6 +238,7 @@ class Game {
               "img/sb-face-right.png",
               "img/sb-face-left.png"
             );
+            this.collisionCheck();
             break;
           default:
             break;
@@ -241,7 +246,7 @@ class Game {
         //Checking the collisions between sokoboy and the box and walls
         // and the collisions between the box and the other boxes and the walls
         // and moving sokoboy and boxes if possible
-        this.collisionCheck();
+        // this.collisionCheck();
       }
     });
 

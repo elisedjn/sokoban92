@@ -37,7 +37,8 @@ class Box {
       default:
         break;
     }
-    if (this.onYellowBall) this.soundBox.play();
+    if (this.onYellowBall) {
+      this.soundBox.play();}
   }
 
   changeColor(obstacle) {
