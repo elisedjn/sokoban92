@@ -97,7 +97,6 @@ let currentGrid = levelList[0][0];
 let currentSokoboy = levelList[0][1];
 let currentBoxList = levelList[0][2];
 
-
 // --------------------------------------------
 // ------------- SCREEN SETTINGS --------------
 // --------------------------------------------
@@ -116,7 +115,7 @@ const buildSplashScreen = () => {
         Use your keyboard’s arrows to move.<br />
         You can only push one box at a time!
       </p>
-      <img src="img/sokogif.gif" alt="Soko-boy dance" />
+      <img src="/img/sokogif.gif" alt="Soko-boy dance" />
       <button id="start-button">START</button> 
       <button class="level-selector">Levels</button>`;
   main.appendChild(splashScreen);
@@ -133,9 +132,9 @@ const buildLevelsScreen = () => {
   <button class="level-btn even">Level 2</button>
   <button class="level-btn odd">Level 3</button>
   <button class="level-btn even">Level 4</button>
-  <img src="img/sokogif.gif" alt="Soko-boy dance" />`;
+  <img src="/img/sokogif.gif" alt="Soko-boy dance" />`;
   main.appendChild(levelsScreen);
-}
+};
 
 const buildGameScreen = () => {
   // Removing the splash screen or the previous game screen
@@ -146,7 +145,8 @@ const buildGameScreen = () => {
   gameScreen.innerHTML = `<canvas id='game-canvas' width = '560' height = '560'></canvas> 
   <button id = "retry-btn">RETRY</button>
   <button class = "level-selector">LEVELS</button>
-  <button id="undo-btn">UNDO</button>`;
+  <button id="undo-btn">UNDO</button>
+  <button id="mute"><img src="/img/soundOn.png" alt="Sound on"/></button>`;
   main.appendChild(gameScreen);
 };
 
@@ -157,7 +157,7 @@ const buildWinScreen = () => {
   let winScreen = document.createElement("div");
   winScreen.id = "win-screen";
   winScreen.innerHTML = `
-    <h1><img src="img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
+    <h1><img src="/img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
       <h2>YOU MADE IT!</h2>
       <button class="next-level-btn">Next Level</button>
       <p class="final-score"> Your moves : <span>${game.movement}</span></p>
@@ -173,7 +173,7 @@ const buildSuperWinScreen = () => {
   let winScreen = document.createElement("div");
   winScreen.id = "super-win-screen";
   winScreen.innerHTML = `
-    <h1><img src="img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
+    <h1><img src="/img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
     <h2>YOU ROCK!</h2>
     <button class="next-level-btn">Restart the all game</button>
     <p class="final-score"> Your moves : <span>${game.movement}</span></p>
@@ -182,20 +182,23 @@ const buildSuperWinScreen = () => {
   main.appendChild(winScreen);
 };
 
-
 // --------------------------------------------
 // -------------- GAME SETTINGS ---------------
 // --------------------------------------------
+let muted;
+
 const gameSetup = () => {
-  game = new Game(currentGrid, currentSokoboy, currentBoxList)
+  game = new Game(currentGrid, currentSokoboy, currentBoxList);
   buildGameScreen();
   game.soundselect.play();
   game.retry(retry);
   game.goToLevelScreen(goToLevelScreen);
   game.undo(undo);
   game.startGame();
+  muted = false;
+  mute();
   game.music.play();
-}
+};
 
 const retry = () => {
   //Checking if the  player wants to retry
@@ -214,7 +217,7 @@ const nextLevel = () => {
   nextLevelBtn.addEventListener("click", () => {
     game.soundWin.pause();
     game.soundWin.currentTime = 0;
-    if(i === levelList.length){
+    if (i === levelList.length) {
       i = 0;
     }
     currentGrid = levelList[i][0];
@@ -238,9 +241,9 @@ const playAgain = () => {
 
 const levelSelection = () => {
   let levelBtnList = document.querySelectorAll(".level-btn");
-  levelBtnList.forEach(btn => {
+  levelBtnList.forEach((btn) => {
     btn.addEventListener("click", () => {
-      switch (btn.innerText){
+      switch (btn.innerText) {
         case "Level 1":
           currentGrid = levelList[0][0];
           currentSokoboy = levelList[0][1];
@@ -264,24 +267,24 @@ const levelSelection = () => {
           currentSokoboy = levelList[3][1];
           currentBoxList = levelList[3][2];
           i = 4;
-          break;  
+          break;
       }
       gameSetup();
-    })
-  })
-}
+    });
+  });
+};
 
 const goToLevelScreen = () => {
   let levelBtn = document.querySelector(".level-selector");
-    levelBtn.addEventListener("click", () => {
-      clearInterval(game.intervalID);
-      game.music.pause();
-      game.music.currentTime = 0;
-      buildLevelsScreen();
-      game.soundselect.play();
-      levelSelection();
-    })
-}
+  levelBtn.addEventListener("click", () => {
+    clearInterval(game.intervalID);
+    game.music.pause();
+    game.music.currentTime = 0;
+    buildLevelsScreen();
+    game.soundselect.play();
+    levelSelection();
+  });
+};
 
 const undo = () => {
   let undoBtn = document.querySelector("#undo-btn");
@@ -289,8 +292,22 @@ const undo = () => {
     // Avoid that the player wins by clicking on undo before he starts moving
     if (game.movement !== 0) game.undoLastAction();
     game.soundselect.play();
-  })
-}
+  });
+};
+
+const mute = () => {
+  let muteBtn = document.querySelector("#mute");
+  muteBtn.addEventListener("click", () => {
+    if (muted) {
+      game.music.play();
+      muteBtn.innerHTML = `<img src ="/img/soundOn.png" alt="Sound On"/>`;
+    } else {
+      game.music.pause();
+      muteBtn.innerHTML = `<img src ="/img/soundOff.png" alt="Sound Off"/>`;
+    }
+    muted = !muted;
+  });
+};
 // --------------------------------------------
 // ------------ STARTING THE GAME -------------
 // --------------------------------------------

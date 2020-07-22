@@ -14,13 +14,13 @@ class Level {
 
     // Images database
     this.voidImg = new Image();
-    this.voidImg.src = "img/bg.png";
+    this.voidImg.src = "/img/bg.png";
     this.wallImg = new Image();
-    this.wallImg.src = "img/wall.png";
+    this.wallImg.src = "/img/wall.png";
     this.ballImg = new Image();
-    this.ballImg.src = "img/ball.png";
+    this.ballImg.src = "/img/ball.png";
     this.bgImg = new Image();
-    this.bgImg.src = "img/blackbg.png"
+    this.bgImg.src = "/img/blackbg.png"
   }
 
   draw(ctx) {
