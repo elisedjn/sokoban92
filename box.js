@@ -2,11 +2,9 @@ class Box {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.onYellowBall = false;
     this.image = new Image();
     this.image.src = "img/yellowbox.png";
-    this.redImage = new Image();
-    this.redImage.src = "img/redbox.png";
-    this.onYellowBall = false;
     this.soundBox = new Audio('sound/boxok.wav');
   }
 

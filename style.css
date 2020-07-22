@@ -17,6 +17,8 @@ button {
   border: 3px solid black;
 }
 
+button:focus { outline: none; }
+
 h1,
 h2 {
   color: #ff0000;
@@ -179,4 +181,14 @@ h2 {
 #levels-screen img {
   position: relative;
   left: -100px;
+}
+
+/* Footer Styling */
+footer {
+  position: absolute;
+  top: 580px;
+  left: 250px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  color:white;
 }

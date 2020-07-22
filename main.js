@@ -192,6 +192,7 @@ const gameSetup = () => {
   game.soundselect.play();
   game.retry(retry);
   game.goToLevelScreen(goToLevelScreen);
+  game.undo(undo);
   game.startGame();
   game.music.play();
 }
@@ -277,6 +278,15 @@ const goToLevelScreen = () => {
       game.soundselect.play();
       levelSelection();
     })
+}
+
+const undo = () => {
+  let undoBtn = document.querySelector("#undo-btn");
+  undoBtn.addEventListener("click", () => {
+    // Avoid that the player wins by clicking on undo before he starts moving
+    if (game.movement !== 0) game.undoLastAction();
+    game.soundselect.play();
+  })
 }
 // --------------------------------------------
 // ------------ STARTING THE GAME -------------
