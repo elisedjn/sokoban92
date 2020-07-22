@@ -13,7 +13,6 @@ class Game {
     this.music.loop = true;
     this.soundselect = new Audio("sound/select.wav");
     this.soundWin = new Audio("sound/winmusic.wav");
-    this.soundBox = new Audio('sound/boxok.wav');
   }
 
   draw() {
@@ -86,9 +85,6 @@ class Game {
         this.draw();
         //counting the movement
         this.movement += 1;
-        if (targetedBox.onYellowBall){
-          this.soundBox.play();
-        }
       } else {
         this.draw();
       }
@@ -142,6 +138,10 @@ class Game {
 
   retry(callback){
     this.retryMethod = callback();
+  }
+
+  goToLevelScreen(callback){
+    this.goToLevelScreenMethod = callback();
   }
 
   play() {

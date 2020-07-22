@@ -7,6 +7,7 @@ class Box {
     this.redImage = new Image();
     this.redImage.src = "img/redbox.png";
     this.onYellowBall = false;
+    this.soundBox = new Audio('sound/boxok.wav');
   }
 
   draw(ctx) {
@@ -38,6 +39,7 @@ class Box {
       default:
         break;
     }
+    if (this.onYellowBall) this.soundBox.play();
   }
 
   changeColor(obstacle) {

@@ -117,7 +117,8 @@ const buildSplashScreen = () => {
         You can only push one box at a time!
       </p>
       <img src="img/sokogif.gif" alt="Soko-boy dance" />
-      <button id="start-button">START</button> `;
+      <button id="start-button">START</button> 
+      <button class="level-selector">Levels</button>`;
   main.appendChild(splashScreen);
 };
 
@@ -128,10 +129,10 @@ const buildLevelsScreen = () => {
   let levelsScreen = document.createElement("div");
   levelsScreen.id = "levels-screen";
   levelsScreen.innerHTML = `<h2>Choose your level</h2>
-  <button id="level1-btn">Level 1</button>
-  <button id="level2-btn">Level 2</button>
-  <button id="level3-btn">Level 3</button>
-  <button id="level4-btn">Level 4</button>
+  <button class="level-btn odd">Level 1</button>
+  <button class="level-btn even">Level 2</button>
+  <button class="level-btn odd">Level 3</button>
+  <button class="level-btn even">Level 4</button>
   <img src="img/sokogif.gif" alt="Soko-boy dance" />`;
   main.appendChild(levelsScreen);
 }
@@ -143,7 +144,9 @@ const buildGameScreen = () => {
   let gameScreen = document.createElement("div");
   gameScreen.id = "game-screen";
   gameScreen.innerHTML = `<canvas id='game-canvas' width = '560' height = '560'></canvas> 
-  <button id = "retry-btn">RETRY</button>`;
+  <button id = "retry-btn">RETRY</button>
+  <button class = "level-selector">LEVELS</button>
+  <button id="undo-btn">UNDO</button>`;
   main.appendChild(gameScreen);
 };
 
@@ -183,37 +186,38 @@ const buildSuperWinScreen = () => {
 // --------------------------------------------
 // -------------- GAME SETTINGS ---------------
 // --------------------------------------------
+const gameSetup = () => {
+  game = new Game(currentGrid, currentSokoboy, currentBoxList)
+  buildGameScreen();
+  game.soundselect.play();
+  game.retry(retry);
+  game.goToLevelScreen(goToLevelScreen);
+  game.startGame();
+  game.music.play();
+}
+
 const retry = () => {
   //Checking if the  player wants to retry
   let retryBtn = document.getElementById("retry-btn");
   retryBtn.addEventListener("click", (event) => {
     game.music.pause();
     clearInterval(game.intervalID);
-    buildGameScreen();
-    game = new Game(currentGrid, currentSokoboy, currentBoxList);
-    game.retry(retry);
-    game.startGame();
-    game.music.play();
+    gameSetup();
   });
 };
 
 const nextLevel = () => {
   let nextLevelBtn = document.querySelector(".next-level-btn");
   nextLevelBtn.addEventListener("click", () => {
-    game.soundselect.play();
     game.soundWin.pause();
     game.soundWin.currentTime = 0;
-    buildGameScreen();
     if(i === levelList.length){
-      i = 0
+      i = 0;
     }
     currentGrid = levelList[i][0];
     currentSokoboy = levelList[i][1];
     currentBoxList = levelList[i][2];
-    game = new Game(currentGrid, currentSokoboy, currentBoxList);
-    game.retry(retry);
-    game.startGame();
-    game.music.play();
+    gameSetup();
     i++;
   });
 };
@@ -222,17 +226,58 @@ const playAgain = () => {
   let playAgainBtn = document.querySelector("#play-again-btn");
   playAgainBtn.addEventListener("click", () => {
     // Re starting the game
-    game.soundselect.play();
     game.soundWin.pause();
     game.soundWin.currentTime = 0;
-    buildGameScreen();
-    game = new Game(currentGrid, currentSokoboy, currentBoxList);
-    game.retry(retry);
-    game.startGame();
-    game.music.play();
+    gameSetup();
   });
 };
 
+const levelSelection = () => {
+  let levelBtnList = document.querySelectorAll(".level-btn");
+  levelBtnList.forEach(btn => {
+    btn.addEventListener("click", () => {
+      switch (btn.innerText){
+        case "Level 1":
+          currentGrid = levelList[0][0];
+          currentSokoboy = levelList[0][1];
+          currentBoxList = levelList[0][2];
+          i = 1;
+          break;
+        case "Level 2":
+          currentGrid = levelList[1][0];
+          currentSokoboy = levelList[1][1];
+          currentBoxList = levelList[1][2];
+          i = 2;
+          break;
+        case "Level 3":
+          currentGrid = levelList[2][0];
+          currentSokoboy = levelList[2][1];
+          currentBoxList = levelList[2][2];
+          i = 3;
+          break;
+        case "Level 4":
+          currentGrid = levelList[3][0];
+          currentSokoboy = levelList[3][1];
+          currentBoxList = levelList[3][2];
+          i = 4;
+          break;  
+      }
+      gameSetup();
+    })
+  })
+}
+
+const goToLevelScreen = () => {
+  let levelBtn = document.querySelector(".level-selector");
+    levelBtn.addEventListener("click", () => {
+      clearInterval(game.intervalID);
+      game.music.pause();
+      game.music.currentTime = 0;
+      buildLevelsScreen();
+      game.soundselect.play();
+      levelSelection();
+    })
+}
 // --------------------------------------------
 // ------------ STARTING THE GAME -------------
 // --------------------------------------------
@@ -244,11 +289,9 @@ window.addEventListener("load", () => {
   let startBtn = document.querySelector("#start-button");
   if (startBtn) {
     startBtn.addEventListener("click", () => {
-      buildGameScreen();
-      game.soundselect.play();
-      game.retry(retry);
-      game.startGame();
-      game.music.play();
+      gameSetup();
     });
   }
+  // Or waiting for the player to click on Levels
+  goToLevelScreen();
 });

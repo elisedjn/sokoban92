@@ -58,6 +58,16 @@ h2 {
   left: -20px;
 }
 
+#splash-screen .level-selector{
+  display: block;
+  font-size: 25px;
+  position: relative;
+  left: 300px;
+  color:black;
+  background-color:#ff0000;
+
+}
+
 /* Win & Super Win Screen Styling */
 #win-screen h1, #super-win-screen h1 {
   font-size: 80px;
@@ -118,11 +128,27 @@ h2 {
   border:none;
   text-align: center;
   position: relative;
-  top: -35px;
-  font-size: 18px;
   width: 72px;
   height: 35px;
   margin: auto;
+}
+
+#game-screen #retry-btn{
+  top: -35px;
+  font-size: 18px;
+}
+
+#game-screen .level-selector{
+  font-size: 16px;
+  top: -70px;
+  left: -140px;
+}
+
+#game-screen #undo-btn{
+  font-size: 18px;
+  top: -105px;
+  left: 140px;
+
 }
 
 /* Levels screen styling */
@@ -133,19 +159,19 @@ h2 {
   margin: 0;
 }
 
-#levels-screen button{
+#levels-screen .level-btn{
   font-size: 30px;
   display: block;
   margin: auto;
   margin-top: 10px;
 }
 
-#levels-screen #level1-btn, #levels-screen #level3-btn{
+#levels-screen .odd{
   position: relative;
   left: -30px;
 }
 
-#levels-screen #level2-btn, #levels-screen #level4-btn{
+#levels-screen .even{
   position: relative;
   left: 30px;
 }
