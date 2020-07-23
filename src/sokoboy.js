@@ -28,7 +28,7 @@ class Sokoboy {
   }
 
   canMove(obstacle) {
-    if (obstacle === "V" || obstacle === "YB") {
+    if (obstacle === "V" || obstacle === "YB" || obstacle === "FW") {
       return true;
     } else if (obstacle === "B") {
       return true; //check if the box can move

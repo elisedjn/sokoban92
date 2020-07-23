@@ -13,7 +13,7 @@ class Box {
   }
 
   canBePushed(obstacle) {
-    if (obstacle === "V" || obstacle === "YB") {
+    if (obstacle === "V" || obstacle === "YB" || obstacle === "FW") {
       return true;
     } else {
       return false;

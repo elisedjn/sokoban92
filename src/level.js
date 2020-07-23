@@ -9,9 +9,9 @@ class Level {
     this.number = number;
     this.grid = grid;
     this.boxList = [];
-    boxListInit.forEach(box => {
-      this.boxList.push(new Box(box[0], box[1]))
-    })
+    boxListInit.forEach((box) => {
+      this.boxList.push(new Box(box[0], box[1]));
+    });
     this.sokoboy = new Sokoboy(sokoboyInit[0], sokoboyInit[1]);
 
     // Images database
@@ -22,7 +22,7 @@ class Level {
     this.ballImg = new Image();
     this.ballImg.src = "./img/ball.png";
     this.bgImg = new Image();
-    this.bgImg.src = "./img/blackbg.png"
+    this.bgImg.src = "./img/blackbg.png";
   }
 
   draw(ctx) {
@@ -34,6 +34,13 @@ class Level {
             break;
           case "W":
             ctx.drawImage(this.wallImg, xCoord * 70, yCoord * 70, 70, 70);
+            break;
+          case "FW":
+            if (xCoord == this.sokoboy.x && yCoord == this.sokoboy.y) {
+              ctx.drawImage(this.voidImg, xCoord * 70, yCoord * 70, 70, 70);
+            } else {
+              ctx.drawImage(this.wallImg, xCoord * 70, yCoord * 70, 70, 70);
+            }
             break;
           case "V":
             ctx.drawImage(this.voidImg, xCoord * 70, yCoord * 70, 70, 70);

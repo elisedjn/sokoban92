@@ -89,6 +89,25 @@ let boxList4 = [
   [5, 5],
 ];
 
+// Elements of the hidden levels
+let extraNumber = 92;
+let extraGrid = [
+  ["BG", "W", "W", "W", "W", "W", "W", "BG"],
+  ["BG", "W", "YB", "V", "YB", "YB", "W", "BG"],
+  ["BG", "W", "YB", "V", "V", "YB", "W", "BG"],
+  ["W", "W", "W", "FW", "V", "V", "W", "W"],
+  ["W", "V", "FW", "V", "V", "FW", "V", "W"],
+  ["W", "V", "W", "FW", "W", "W", "V", "W"],
+  ["W", "V", "V", "V", "V", "V", "V", "W"],
+  ["W", "W", "W", "W", "W", "W", "W", "W"]];
+let extraSokoboy = [4,6];
+let extraboxList = [[4,2],[5,3],[2,4],[5,4],[3,5]];
+
+let extraNumber2 = 90;
+let extraGrid2 = [];
+let extraSokoboy2 = [];
+let extraboxList2 = []
+
 let levelList = [
   [number1, grid1, sokoboy1, boxList1],
   [number2, grid2, sokoboy2, boxList2],
@@ -120,7 +139,7 @@ const buildSplashScreen = () => {
         Use your keyboard’s arrows to move.<br />
         You can only push one box at a time!
       </p>
-      <img src="./img/sokogif.gif" alt="Soko-boy dance" />
+      <img class="soko-dance" src="./img/sokogif.gif" alt="Soko-boy dance" />
       <button id="start-button">START</button> 
       <button class="level-selector">Levels</button>`;
   main.appendChild(splashScreen);
@@ -137,7 +156,7 @@ const buildLevelsScreen = () => {
   <button class="level-btn even">Level 2</button>
   <button class="level-btn odd">Level 3</button>
   <button class="level-btn even">Level 4</button>
-  <img src="./img/sokogif.gif" alt="Soko-boy dance" />`;
+  <img class="soko-dance" src="./img/sokogif.gif" alt="Soko-boy dance" />`;
   main.appendChild(levelsScreen);
 };
 
@@ -162,7 +181,7 @@ const buildWinScreen = () => {
   let winScreen = document.createElement("div");
   winScreen.id = "win-screen";
   winScreen.innerHTML = `
-    <h1><img src="./img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
+    <h1><img class="soko-dance" src="./img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
       <h2>YOU MADE IT!</h2>
       <button class="next-level-btn">Next Level</button>
       <p class="final-score"> Your moves : <span>${game.movement}</span></p>
@@ -178,7 +197,7 @@ const buildSuperWinScreen = () => {
   let winScreen = document.createElement("div");
   winScreen.id = "super-win-screen";
   winScreen.innerHTML = `
-    <h1><img src="./img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
+    <h1><img class="soko-dance" src="./img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
     <h2>YOU ROCK!</h2>
     <button class="next-level-btn">Restart the all game</button>
     <p class="final-score"> Your moves : <span>${game.movement}</span></p>
@@ -240,6 +259,8 @@ const nextLevel = () => {
     gameSetup();
     i++;
   });
+  // Or waiting for the player to go to the hidden Level
+  hiddenLevel();
 };
 
 const playAgain = () => {
@@ -291,6 +312,8 @@ const levelSelection = () => {
       gameSetup();
     });
   });
+  // Or waiting for the player to go to the hidden Level
+  hiddenLevel();
 };
 
 const goToLevelScreen = () => {
@@ -327,6 +350,25 @@ const mute = () => {
     muted = !muted;
   });
 };
+
+const hiddenLevel = () => {
+  let hiddenBtn = document.querySelector(".soko-dance");
+  if (hiddenBtn){
+    hiddenBtn.addEventListener("click", () => {
+      console.log("hidden button clicked")
+      // The box list is erased
+      game.level.boxList.splice(0, game.level.boxList.length);
+      currentNumber = extraNumber;
+      currentGrid = extraGrid;
+      currentSokoboy = extraSokoboy;
+      currentBoxList = extraboxList;
+      i = 4;
+      game.soundWin.pause();
+      game.soundWin.currentTime = 0;
+      gameSetup();
+    })
+  }
+}
 // --------------------------------------------
 // ------------ STARTING THE GAME -------------
 // --------------------------------------------
@@ -343,4 +385,7 @@ window.addEventListener("load", () => {
   }
   // Or waiting for the player to click on Levels
   goToLevelScreen();
+
+  // Or waiting for the player to go to the hidden Level
+  hiddenLevel();
 });
