@@ -90,8 +90,8 @@ let boxList4 = [
 ];
 
 // Elements of the hidden levels
-let extraNumber = 92;
-let extraGrid = [
+let extraNumber1 = 92;
+let extraGrid1 = [
   ["BG", "W", "W", "W", "W", "W", "W", "BG"],
   ["BG", "W", "YB", "V", "YB", "YB", "W", "BG"],
   ["BG", "W", "YB", "V", "V", "YB", "W", "BG"],
@@ -99,14 +99,42 @@ let extraGrid = [
   ["W", "V", "FW", "V", "V", "FW", "V", "W"],
   ["W", "V", "W", "FW", "W", "W", "V", "W"],
   ["W", "V", "V", "V", "V", "V", "V", "W"],
-  ["W", "W", "W", "W", "W", "W", "W", "W"]];
-let extraSokoboy = [4,6];
-let extraboxList = [[4,2],[5,3],[2,4],[5,4],[3,5]];
+  ["W", "W", "W", "W", "W", "W", "W", "W"],
+];
+let extraSokoboy1 = [4, 6];
+let extraBoxList1 = [
+  [4, 2],
+  [5, 3],
+  [2, 4],
+  [5, 4],
+  [3, 5],
+];
 
 let extraNumber2 = 90;
-let extraGrid2 = [];
-let extraSokoboy2 = [];
-let extraboxList2 = []
+let extraGrid2 = [
+  ["BG", "BG", "BG", "BG", "BG", "BG", "BG", "BG"],
+  ["BG", "W", "W", "W", "W", "W", "W", "BG"],
+  ["W", "W", "V", "FW", "V", "V", "W", "W"],
+  ["W", "V", "V", "FW", "V", "V", "V", "W"],
+  ["W", "YB", "YB", "YB", "YB", "YB", "YB", "W"],
+  ["W", "V", "V", "V", "FW", "V", "V", "W"],
+  ["W", "W", "W", "V", "V", "W", "W", "W"],
+  ["W", "W", "W", "W", "W", "W", "W", "W"],
+];
+let extraSokoboy2 = [1, 5];
+let extraBoxList2 = [
+  [2, 3],
+  [4, 3],
+  [5, 3],
+  [2, 5],
+  [3, 5],
+  [5, 5],
+];
+
+let hiddenLevelList = [
+  [extraNumber1, extraGrid1, extraSokoboy1, extraBoxList1],
+  [extraNumber2, extraGrid2, extraSokoboy2, extraBoxList2],
+];
 
 let levelList = [
   [number1, grid1, sokoboy1, boxList1],
@@ -224,11 +252,10 @@ const gameSetup = () => {
   if (muted) {
     game.music.pause();
     muteBtn.innerHTML = `<img src ="./img/soundOff.png" alt="Sound Off"/>`;
+  } else {
+    game.music.play();
+    muteBtn.innerHTML = `<img src ="./img/soundOn.png" alt="Sound On"/>`;
   }
-    else {
-      game.music.play();
-      muteBtn.innerHTML = `<img src ="./img/soundOn.png" alt="Sound On"/>`;
-    } 
 };
 
 const retry = () => {
@@ -353,22 +380,24 @@ const mute = () => {
 
 const hiddenLevel = () => {
   let hiddenBtn = document.querySelector(".soko-dance");
-  if (hiddenBtn){
+  if (hiddenBtn) {
     hiddenBtn.addEventListener("click", () => {
-      console.log("hidden button clicked")
+      console.log("hidden button clicked");
       // The box list is erased
       game.level.boxList.splice(0, game.level.boxList.length);
-      currentNumber = extraNumber;
-      currentGrid = extraGrid;
-      currentSokoboy = extraSokoboy;
-      currentBoxList = extraboxList;
+      // Choosing randomly the level
+      let randomIndex = Math.round(Math.random() * hiddenLevelList.length)
+      currentNumber = hiddenLevelList[randomIndex][0];
+      currentGrid = hiddenLevelList[randomIndex][1];
+      currentSokoboy = hiddenLevelList[randomIndex][2];
+      currentBoxList = hiddenLevelList[randomIndex][3];
       i = 4;
       game.soundWin.pause();
       game.soundWin.currentTime = 0;
       gameSetup();
-    })
+    });
   }
-}
+};
 // --------------------------------------------
 // ------------ STARTING THE GAME -------------
 // --------------------------------------------

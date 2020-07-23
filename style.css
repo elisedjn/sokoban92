@@ -8,6 +8,16 @@ main {
   font-size: 18px;
 }
 
+/* Animations */
+@keyframes zrotate {
+  from{
+    transform: scale(0) rotateZ(10deg)
+  }
+  to{
+    transform: scale(1) rotateZ(360deg)
+  }
+}
+
 button {
   background-color: #ffff00;
   color: #007e00;
@@ -121,6 +131,10 @@ h2 {
 #game-screen {
   display: flex;
   flex-direction: column;
+  animation-name: zrotate;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
 }
 
 #game-screen button {
