@@ -374,6 +374,7 @@ const hiddenLevel = () => {
 // --------------------------------------------
 // Waiting for the page to load before to show the splash screen
 window.addEventListener("load", () => {
+  localStorage.clear();
   buildSplashScreen();
 
   //Waiting for the player to press Start to build the game
