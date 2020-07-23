@@ -23,33 +23,51 @@ The number of moves of Soko-boy are calculated, the idea is to complete the leve
 ## Data structure
 Classes and methods definition.
 # main.js
+- levels elements
 - buildSplashScreen (){}
+- buildLevelsScreen (){}
 - buildGameScreen (){}
 - buildWinScreen (){}
+- buildSuperWinScreen (){}
+- gameSetup (){}
+- retry (){}
+- nextLevel (){}
+- playAgain (){}
+- levelSelection (){}
+- goToLevelScreen (){}
+- undo (){}
+- hiddenLevel (){}
 
 # game.js
 - Game () {}
-- drawCanvas () {}
+- draw () {}
+- whichBox (){}
+- savePreviousPosition (){}
+- undoLastAction (){}
+- collisionCheck (){}
+- updateScore (){}
+- play (){}
 - Win () {}
+- startGame (){}
 
 # level.js
 - Level () {this.gird; this.sokoboyInit; this.boxesInit}
-- drawTheGrid () {}
+- draw (){}
 - nextObstacle (x, y, direction) {}
-- isYellowBall (x, y) {}
 
 # sokoboy.js
 - Sokoboy () {this.x, this.y, this.direction}
-- draw () {}
-- canMove () {}
-- move () {}
+- draw (){}
+- animate (){}
+- canMove (){}
+- move (){}
 
 # box.js
 - Box () {this.x, this.y}
-- draw () {}
-- changeColor () {}
-- canBePushed (direction) {}
-- pushed (direction) {}
+- draw (){}
+- changeColor (){}
+- canBePushed(obstacle) {}
+- pushed(direction) {}
 
 
 
@@ -59,6 +77,8 @@ Definition of the different states and their transition (transition functions)
 - splashScreen
 - gameScreen
 - winScreen
+- superWinScreen
+- levelsScreen
 
 
 ## Task
