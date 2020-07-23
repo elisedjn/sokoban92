@@ -1,10 +1,12 @@
 // This is the class for the level - it takes as parameter
+// - the number of the level
 // - a grid (2 dimensional array)
 // - an array with the initial values of the sokoboy
 // - a 2 dimensional array with all the initial values of boxes
 
 class Level {
-  constructor(grid, sokoboyInit, boxListInit) {
+  constructor(number, grid, sokoboyInit, boxListInit) {
+    this.number = number;
     this.grid = grid;
     this.boxList = [];
     boxListInit.forEach(box => {

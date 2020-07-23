@@ -1,10 +1,12 @@
 class Game {
-  constructor(grid, sokoboy, boxList) {
-    this.level = new Level(grid, sokoboy, boxList);
+  constructor(number, grid, sokoboy, boxList) {
+    this.level = new Level(number, grid, sokoboy, boxList);
     this.canvas = null;
     this.ctx = null;
     this.keyDown = false;
     this.movement = 0;
+    this.levelBestScore;
+    localStorage.getItem(this.level.number) ? this.levelBestScore = localStorage.getItem(this.level.number) : this.levelBestScore = "-";
     this.intervalID = 0;
 
     // Sounds
@@ -15,11 +17,7 @@ class Game {
     this.soundWin = new Audio("../sound/winmusic.wav");
 
     // For undo button
-    this.prevSokoPosition = [
-      this.level.sokoboy.x,
-      this.level.sokoboy.y,
-      this.level.sokoboy.direction,
-    ];
+    this.prevSokoPosition = [];
     this.prevBoxesPosition = [];
   }
 
@@ -34,7 +32,7 @@ class Game {
     this.ctx.font = "20px courier";
     this.ctx.fillText(`Your moves : ${this.movement}`, 85, 515);
     this.ctx.font = "16px courier";
-    this.ctx.fillText(`Best  moves : 20 `, 375, 512)
+    this.ctx.fillText(`Best  moves : ${this.levelBestScore} `, 375, 512)
   }
 
   whichBox(x, y, direction) {
@@ -153,6 +151,15 @@ class Game {
     }
   }
 
+  updateScore() {
+    // Looking for the registered best score on this level
+    if(this.levelBestScore === "-" || this.movement < this.levelBestScore){
+      localStorage.setItem(this.level.number, this.movement);
+      let scoreSentence = document.querySelector(".can-do-better");
+      scoreSentence.innerHTML = "You beat the best score! </br> Wanna try to do even better? ";
+    }
+  }
+
   win() {
     // Checking if every box is on a yellow ball
     let win = true;
@@ -162,6 +169,7 @@ class Game {
       }
     });
     if (win) {
+      // Music is stopped
       this.music.pause();
       this.music.currentTime = 0;
       // If the player wins the game, the interval is cleared.
@@ -171,6 +179,8 @@ class Game {
       // The buildscreen appears
       if (i < levelList.length) {
         buildWinScreen();
+        // Updating the best score if needed
+        this.updateScore();
         this.soundWin.volume = 0.1;
         this.soundWin.play();
         // Waiting for the player to click on play again
@@ -179,6 +189,8 @@ class Game {
         nextLevel();
       } else {
         buildSuperWinScreen();
+        // Updating the best score if needed
+        this.updateScore();
         this.soundWin.volume = 0.1;
         this.soundWin.play();
         // Waiting for the player to click on play again

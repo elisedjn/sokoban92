@@ -3,6 +3,7 @@
 // --------------------------------------------
 
 // Elements for the 1st Level
+let number1 = 1;
 let grid1 = [
   ["BG", "W", "W", "W", "W", "BG", "BG", "BG"],
   ["BG", "W", "V", "V", "W", "W", "W", "BG"],
@@ -21,6 +22,7 @@ let boxList1 = [
 ];
 
 // Elements for the 2nd Level
+let number2 = 2;
 let grid2 = [
   ["BG", "BG", "W", "W", "W", "W", "BG", "BG"],
   ["BG", "BG", "W", "YB", "YB", "W", "BG", "BG"],
@@ -40,6 +42,7 @@ let boxList2 = [
 ];
 
 // Elements for the 3rd Level
+let number3 = 3;
 let grid3 = [
   ["BG", "W", "W", "W", "W", "W", "W", "W"],
   ["BG", "W", "YB", "YB", "V", "YB", "YB", "W"],
@@ -63,6 +66,7 @@ let boxList3 = [
 ];
 
 // Elements for the 4th Level
+let number4 = 4;
 let grid4 = [
   ["BG", "BG", "BG", "BG", "BG", "BG", "BG", "BG"],
   ["BG", "W", "W", "W", "W", "W", "W", "W"],
@@ -86,22 +90,23 @@ let boxList4 = [
 ];
 
 let levelList = [
-  [grid1, sokoboy1, boxList1],
-  [grid2, sokoboy2, boxList2],
-  [grid3, sokoboy3, boxList3],
-  [grid4, sokoboy4, boxList4],
+  [number1, grid1, sokoboy1, boxList1],
+  [number2, grid2, sokoboy2, boxList2],
+  [number3, grid3, sokoboy3, boxList3],
+  [number4, grid4, sokoboy4, boxList4],
 ];
 let i = 1;
 
-let currentGrid = levelList[0][0];
-let currentSokoboy = levelList[0][1];
-let currentBoxList = levelList[0][2];
+let currentNumber = levelList[0][0];
+let currentGrid = levelList[0][1];
+let currentSokoboy = levelList[0][2];
+let currentBoxList = levelList[0][3];
 
 // --------------------------------------------
 // ------------- SCREEN SETTINGS --------------
 // --------------------------------------------
 let main = document.querySelector("main");
-let game = new Game(currentGrid, currentSokoboy, currentBoxList);
+let game = new Game(currentNumber, currentGrid, currentSokoboy, currentBoxList);
 
 const buildSplashScreen = () => {
   let splashScreen = document.createElement("div");
@@ -161,7 +166,7 @@ const buildWinScreen = () => {
       <h2>YOU MADE IT!</h2>
       <button class="next-level-btn">Next Level</button>
       <p class="final-score"> Your moves : <span>${game.movement}</span></p>
-      <p class="can-do-better"> Wanna try to do better? </p>
+      <p class="can-do-better"> </br>  </br>Wanna try to do better? </p>
       <button id="play-again-btn">Play again</button>`;
   main.appendChild(winScreen);
 };
@@ -177,7 +182,7 @@ const buildSuperWinScreen = () => {
     <h2>YOU ROCK!</h2>
     <button class="next-level-btn">Restart the all game</button>
     <p class="final-score"> Your moves : <span>${game.movement}</span></p>
-    <p class="can-do-better"> Wanna try to do better? </p>
+    <p class="can-do-better"> </br>  </br>Wanna try to do better? </p>
     <button id="play-again-btn">Restart the <br/> last level</button>`;
   main.appendChild(winScreen);
 };
@@ -188,16 +193,23 @@ const buildSuperWinScreen = () => {
 let muted;
 
 const gameSetup = () => {
-  game = new Game(currentGrid, currentSokoboy, currentBoxList);
+  game = new Game(currentNumber, currentGrid, currentSokoboy, currentBoxList);
   buildGameScreen();
   game.soundselect.play();
   game.retry(retry);
   game.goToLevelScreen(goToLevelScreen);
   game.undo(undo);
   game.startGame();
-  muted = false;
   mute();
-  game.music.play();
+  let muteBtn = document.querySelector("#mute");
+  if (muted) {
+    game.music.pause();
+    muteBtn.innerHTML = `<img src ="../img/soundOff.png" alt="Sound Off"/>`;
+  }
+    else {
+      game.music.play();
+      muteBtn.innerHTML = `<img src ="../img/soundOn.png" alt="Sound On"/>`;
+    } 
 };
 
 const retry = () => {
@@ -220,9 +232,10 @@ const nextLevel = () => {
     if (i === levelList.length) {
       i = 0;
     }
-    currentGrid = levelList[i][0];
-    currentSokoboy = levelList[i][1];
-    currentBoxList = levelList[i][2];
+    currentNumber = levelList[i][0];
+    currentGrid = levelList[i][1];
+    currentSokoboy = levelList[i][2];
+    currentBoxList = levelList[i][3];
     console.log(currentBoxList);
     gameSetup();
     i++;
@@ -247,27 +260,31 @@ const levelSelection = () => {
       game.level.boxList.splice(0, game.level.boxList.length);
       switch (btn.innerText) {
         case "Level 1":
-          currentGrid = levelList[0][0];
-          currentSokoboy = levelList[0][1];
-          currentBoxList = levelList[0][2];
+          currentNumber = levelList[0][0];
+          currentGrid = levelList[0][1];
+          currentSokoboy = levelList[0][2];
+          currentBoxList = levelList[0][3];
           i = 1;
           break;
         case "Level 2":
-          currentGrid = levelList[1][0];
-          currentSokoboy = levelList[1][1];
-          currentBoxList = levelList[1][2];
+          currentNumber = levelList[1][0];
+          currentGrid = levelList[1][1];
+          currentSokoboy = levelList[1][2];
+          currentBoxList = levelList[1][3];
           i = 2;
           break;
         case "Level 3":
-          currentGrid = levelList[2][0];
-          currentSokoboy = levelList[2][1];
-          currentBoxList = levelList[2][2];
+          currentNumber = levelList[2][0];
+          currentGrid = levelList[2][1];
+          currentSokoboy = levelList[2][2];
+          currentBoxList = levelList[2][3];
           i = 3;
           break;
         case "Level 4":
-          currentGrid = levelList[3][0];
-          currentSokoboy = levelList[3][1];
-          currentBoxList = levelList[3][2];
+          currentNumber = levelList[3][0];
+          currentGrid = levelList[3][1];
+          currentSokoboy = levelList[3][2];
+          currentBoxList = levelList[3][3];
           i = 4;
           break;
       }
