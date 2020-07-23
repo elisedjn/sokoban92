@@ -8,11 +8,11 @@ class Game {
     this.intervalID = 0;
 
     // Sounds
-    this.music = new Audio("/sound/bgmusic.wav");
+    this.music = new Audio("../sound/bgmusic.wav");
     this.music.volume = 0.2;
     this.music.loop = true;
-    this.soundselect = new Audio("/sound/select.wav");
-    this.soundWin = new Audio("/sound/winmusic.wav");
+    this.soundselect = new Audio("../sound/select.wav");
+    this.soundWin = new Audio("../sound/winmusic.wav");
 
     // For undo button
     this.prevSokoPosition = [
@@ -96,7 +96,7 @@ class Game {
     copiedPrevBoxList.forEach(boxElem => {
       let newBox = new Box(boxElem[0], boxElem[1]);
       newBox.onYellowBall = boxElem[2];
-      if (newBox.onYellowBall) newBox.image.src = "/img/redbox.png";
+      if (newBox.onYellowBall) newBox.image.src = "../img/redbox.png";
       this.level.boxList.push(newBox);
     })
 
@@ -213,42 +213,38 @@ class Game {
           case "ArrowRight":
             this.level.sokoboy.direction = "R";
             this.level.sokoboy.animate(
-              "/img/sb-right.png",
-              "/img/sb-right-dab.png"
+              "../img/sb-right.png",
+              "../img/sb-right-dab.png"
             );
             this.collisionCheck();
             break;
           case "ArrowLeft":
             this.level.sokoboy.direction = "L";
             this.level.sokoboy.animate(
-              "/img/sb-left.png",
-              "/img/sb-left-dab.png"
+              "../img/sb-left.png",
+              "../img/sb-left-dab.png"
             );
             this.collisionCheck();
             break;
           case "ArrowUp":
             this.level.sokoboy.direction = "U";
             this.level.sokoboy.animate(
-              "/img/sb-back-right.png",
-              "/img/sb-back-left.png"
+              "../img/sb-back-right.png",
+              "../img/sb-back-left.png"
             );
             this.collisionCheck();
             break;
           case "ArrowDown":
             this.level.sokoboy.direction = "D";
             this.level.sokoboy.animate(
-              "/img/sb-face-right.png",
-              "/img/sb-face-left.png"
+              "../img/sb-face-right.png",
+              "../img/sb-face-left.png"
             );
             this.collisionCheck();
             break;
           default:
             break;
         }
-        //Checking the collisions between sokoboy and the box and walls
-        // and the collisions between the box and the other boxes and the walls
-        // and moving sokoboy and boxes if possible
-        // this.collisionCheck();
       }
     });
 

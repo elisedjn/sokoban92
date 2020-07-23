@@ -5,7 +5,7 @@ class Sokoboy {
     this.direction = "D";
 
     this.image = new Image();
-    this.image.src = "/img/sb-face.png";
+    this.image.src = "../img/sb-face.png";
 
     this.bool = true;
     this.intervalIDSoko = 0;
