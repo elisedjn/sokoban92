@@ -120,7 +120,7 @@ const buildSplashScreen = () => {
         Use your keyboard’s arrows to move.<br />
         You can only push one box at a time!
       </p>
-      <img src="../img/sokogif.gif" alt="Soko-boy dance" />
+      <img src="./img/sokogif.gif" alt="Soko-boy dance" />
       <button id="start-button">START</button> 
       <button class="level-selector">Levels</button>`;
   main.appendChild(splashScreen);
@@ -137,7 +137,7 @@ const buildLevelsScreen = () => {
   <button class="level-btn even">Level 2</button>
   <button class="level-btn odd">Level 3</button>
   <button class="level-btn even">Level 4</button>
-  <img src="../img/sokogif.gif" alt="Soko-boy dance" />`;
+  <img src="./img/sokogif.gif" alt="Soko-boy dance" />`;
   main.appendChild(levelsScreen);
 };
 
@@ -151,7 +151,7 @@ const buildGameScreen = () => {
   <button id = "retry-btn">RETRY</button>
   <button class = "level-selector">LEVELS</button>
   <button id="undo-btn">UNDO</button>
-  <button id="mute"><img src="../img/soundOn.png" alt="Sound on"/></button>`;
+  <button id="mute"><img src="./img/soundOn.png" alt="Sound on"/></button>`;
   main.appendChild(gameScreen);
 };
 
@@ -162,7 +162,7 @@ const buildWinScreen = () => {
   let winScreen = document.createElement("div");
   winScreen.id = "win-screen";
   winScreen.innerHTML = `
-    <h1><img src="../img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
+    <h1><img src="./img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
       <h2>YOU MADE IT!</h2>
       <button class="next-level-btn">Next Level</button>
       <p class="final-score"> Your moves : <span>${game.movement}</span></p>
@@ -178,7 +178,7 @@ const buildSuperWinScreen = () => {
   let winScreen = document.createElement("div");
   winScreen.id = "super-win-screen";
   winScreen.innerHTML = `
-    <h1><img src="../img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
+    <h1><img src="./img/sokogif.gif" alt="Soko-boy dance" />YEAH!</h1>
     <h2>YOU ROCK!</h2>
     <button class="next-level-btn">Restart the all game</button>
     <p class="final-score"> Your moves : <span>${game.movement}</span></p>
@@ -204,11 +204,11 @@ const gameSetup = () => {
   let muteBtn = document.querySelector("#mute");
   if (muted) {
     game.music.pause();
-    muteBtn.innerHTML = `<img src ="../img/soundOff.png" alt="Sound Off"/>`;
+    muteBtn.innerHTML = `<img src ="./img/soundOff.png" alt="Sound Off"/>`;
   }
     else {
       game.music.play();
-      muteBtn.innerHTML = `<img src ="../img/soundOn.png" alt="Sound On"/>`;
+      muteBtn.innerHTML = `<img src ="./img/soundOn.png" alt="Sound On"/>`;
     } 
 };
 
@@ -319,10 +319,10 @@ const mute = () => {
   muteBtn.addEventListener("click", () => {
     if (muted) {
       game.music.play();
-      muteBtn.innerHTML = `<img src ="../img/soundOn.png" alt="Sound On"/>`;
+      muteBtn.innerHTML = `<img src ="./img/soundOn.png" alt="Sound On"/>`;
     } else {
       game.music.pause();
-      muteBtn.innerHTML = `<img src ="../img/soundOff.png" alt="Sound Off"/>`;
+      muteBtn.innerHTML = `<img src ="./img/soundOff.png" alt="Sound Off"/>`;
     }
     muted = !muted;
   });

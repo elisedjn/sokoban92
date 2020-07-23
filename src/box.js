@@ -4,8 +4,8 @@ class Box {
     this.y = y;
     this.onYellowBall = false;
     this.image = new Image();
-    this.image.src = "../img/yellowbox.png";
-    this.soundBox = new Audio('../sound/boxok.wav');
+    this.image.src = "./img/yellowbox.png";
+    this.soundBox = new Audio('./sound/boxok.wav');
   }
 
   draw(ctx) {
@@ -43,10 +43,10 @@ class Box {
 
   changeColor(obstacle) {
     if (obstacle === "YB") {
-      this.image.src = "../img/redbox.png";
+      this.image.src = "./img/redbox.png";
       this.onYellowBall = true;
     } else {
-      this.image.src = "../img/yellowbox.png";
+      this.image.src = "./img/yellowbox.png";
       this.onYellowBall = false;
     }
   }
