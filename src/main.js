@@ -282,7 +282,6 @@ const nextLevel = () => {
     currentGrid = levelList[i][1];
     currentSokoboy = levelList[i][2];
     currentBoxList = levelList[i][3];
-    console.log(currentBoxList);
     gameSetup();
     i++;
   });
@@ -382,7 +381,6 @@ const hiddenLevel = () => {
   let hiddenBtn = document.querySelector(".soko-dance");
   if (hiddenBtn) {
     hiddenBtn.addEventListener("click", () => {
-      console.log("hidden button clicked");
       // The box list is erased
       game.level.boxList.splice(0, game.level.boxList.length);
       // Choosing randomly the level
@@ -404,7 +402,6 @@ const hiddenLevel = () => {
 // --------------------------------------------
 // Waiting for the page to load before to show the splash screen
 window.addEventListener("load", () => {
-  localStorage.clear();
   buildSplashScreen();
 
   //Waiting for the player to press Start to build the game
