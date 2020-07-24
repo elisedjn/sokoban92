@@ -395,6 +395,7 @@ const hiddenLevel = () => {
       game.soundWin.pause();
       game.soundWin.currentTime = 0;
       gameSetup();
+      gameScreen.classList.add("animated")
     });
   }
 };

@@ -1,3 +1,33 @@
+/* Animations */
+@keyframes zrotate {
+  from{
+    transform: scale(0) rotate(0deg)
+  }
+  to{
+    transform: scale(1) rotate(1080deg)
+  }
+}
+
+@keyframes appear
+{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 100;
+  }
+}
+
+@keyframes translate {
+  0%{
+    transform: scale(0) translate(-500px, 0px)
+  }
+  100%{
+    transform: scale(1) translate(0px, 0px)
+  }
+}
+
+/* Styling */
 body {
   background-color: black;
 }
@@ -8,15 +38,8 @@ main {
   font-size: 18px;
 }
 
-/* Animations */
-@keyframes zrotate {
-  from{
-    transform: scale(0) rotateZ(10deg)
-  }
-  to{
-    transform: scale(1) rotateZ(360deg)
-  }
-}
+
+
 
 button {
   background-color: #ffff00;
@@ -44,6 +67,13 @@ h2 {
   height: 560px;
   background-image: url("img/splash-bg.png");
   text-align: center;
+}
+
+#splash-screen, #levels-screen{
+  animation-name: appear;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
 }
 
 #splash-screen h1 {
@@ -81,6 +111,13 @@ h2 {
 }
 
 /* Win & Super Win Screen Styling */
+#win-screen, #super-win-screen {
+  animation-name: translate;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+} 
+
 #win-screen h1, #super-win-screen h1 {
   font-size: 80px;
   margin: 40px 0px 0px 0px;
